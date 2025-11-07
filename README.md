@@ -1,3 +1,2 @@
-<h1 align="center">Sequential-credential</h1>
-<p align="center">
-</p>
+<h1 align="center">Sequential-Credential</h1>
+<p align="center"></p>
