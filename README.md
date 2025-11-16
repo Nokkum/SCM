@@ -47,7 +47,7 @@ project_root/
 ```
 
 # Installation
-```
+```python
 git clone <repo-url>
 cd sequential-credential-manager
 python -m venv venv
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 # Environment Variables
 - **MASTER_PASSWORD**: Optional environment variable for the master password
-```
+```python
 # Linux/macOS
 export MASTER_PASSWORD="your-strong-password"
 
@@ -67,7 +67,7 @@ $env:MASTER_PASSWORD="your-strong-password"
 ```
 
 # Quick Start
-```
+```python
 python main.py
 ```
 
@@ -77,6 +77,6 @@ python main.py
 
 # CLI Utilities
 - Migration Helper (file system ↓ DB):
-```
+```python
 python -m core.migration --migrate
 ```
