@@ -23,6 +23,7 @@ project_root/
 │
 ├─ main.py               # Entry point for GUI
 ├─ requirements.txt
+├─ LICENSE
 ├─ README.md
 ├─ gui/
 │  ├─ app.py             # Main GUI logic
