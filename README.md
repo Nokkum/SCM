@@ -76,7 +76,7 @@ python main.py
 - Use **Migrate** → **Filesystem** → **DB** to move legacy credentials into DB.
 
 # CLI Utilities
-- Migration Helper (file system ↓ DB):
+- Migration Helper (file system → DB):
 ```bash
 python -m core.migration --migrate
 ```
