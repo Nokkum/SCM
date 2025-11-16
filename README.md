@@ -47,7 +47,7 @@ project_root/
 ```
 
 # Installation
-```python
+```yaml
 git clone <repo-url>
 cd sequential-credential-manager
 python -m venv venv
