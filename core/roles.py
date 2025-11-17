@@ -1,5 +1,4 @@
 from typing import Dict
-from core.roles import check_permission
 
 # Very small RBAC scaffold
 DEFAULT_ROLES = {
