@@ -1,6 +1,5 @@
 import requests
 from typing import Tuple
-from core.validators import validate_discord_token, validate_github_token
 
 
 def validate_discord_token(token: str, timeout: int = 5) -> Tuple[bool, str]:
