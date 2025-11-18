@@ -7,6 +7,17 @@
   A modular, secure credential management system designed for developers. Stores tokens, API keys, and credentials encrypted, supports multiple storage backends, and includes utilities for migration, scanning, and RBAC enforcement.
 </p>
 
+## Changes
+
+### Version 1.1
+- Added `core/audit.py` for encrypted audit logging
+- Added `core/backup.py` for encrypted backup/restore functionality
+- Added `core/cli.py` for command-line access
+- Modified `core/clipboard.py` to include secure auto-wipe copy
+- Refactored GUI to support profile switching
+- Improved JSON + SQLite metadata storage
+
+
 ## Features
 
 - **Master-Password Encryption**: All credentials are encrypted with a master password using modern cryptography (Fernet + PBKDF2).
@@ -20,6 +31,9 @@
 - **Clipboard Auto-Wipe**: Securely copy credentials to clipboard with automatic clearing.
 - **Secret Scanner**: Scan text or files for sensitive information like API keys and tokens.
 - **Extensible Templates**: Provider templates for standardized credential entry.
+- **Audit Logging**: Tracks all actions performed within the credential manager, such as creating, updating, or deleting credentials and profiles. Logs are timestamped, encrypted, and can be filtered for easy review.
+- **Backup & Restore**: Provides encrypted backup and restore functionality for credentials and configurations. Supports exporting/importing JSON + DB blobs, validating integrity, and securely merging backups with existing data.
+- **Command-Line Interface**: Enables full headless access to the credential manager. Users can add, update, delete, list, export, import credentials, switch profiles, and perform filesystem-to-DB migration entirely from the terminal.
 
 ## Directory Structure
 ```
@@ -38,7 +52,7 @@ project_root/
    ├─ __init__.py        
    ├─ security.py        # EncryptionManager
    ├─ audit.py           # Auto logging
-   ├─ backup.py          # Automatic backup
+   ├─ backup.py          # Backup + restoration
    ├─ cli.py             # CLI Integration
    ├─ database.py        # JSON + SQLite + optional Postgres storage
    ├─ configs.py         # Filesystem credential management
@@ -119,3 +133,13 @@ secure_copy("my-secret-token", timeout=10)
 - Always use a strong master password.
 - Clipboard auto-wipe reduces exposure but cannot guarantee OS-level protection.
 - Role-based access is scaffold only; integrate with an authentication backend for multi-user setups.
+
+## Versions
+- **v1.1** – 2025-11-18
+  - Added audit, backup, and CLI modules
+  - Clipboard auto-wipe functionality
+  - Profile switching and RBAC enhancements
+- **v1.0** – 2025-11-17
+  - Initial release with Tkinter GUI and encrypted credential storage
+  - Added token validation and scanning
+  - GUI refactor, database migration helpers
