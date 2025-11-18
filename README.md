@@ -31,10 +31,11 @@ project_root/
 ├─ README.md
 ├─ gui/
 │  ├─ app.py             # Main GUI logic
+   ├─ __init__.py
 │  └─ tray.py            # Optional system tray scaffold
 │
 └─ core/
-   ├─ __init__.py        # Public interface
+   ├─ __init__.py        
    ├─ security.py        # EncryptionManager
    ├─ database.py        # JSON + SQLite + optional Postgres storage
    ├─ configs.py         # Filesystem credential management
