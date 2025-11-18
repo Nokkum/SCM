@@ -1,1 +1,3 @@
-from core import EncryptionManager, Database, ConfigManager
+from .app import run_gui
+
+__all__ = ["run_gui"]

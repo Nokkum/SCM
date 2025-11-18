@@ -1,6 +1,7 @@
 import os
 from typing import List
 
+
 class ProfileManager:
     BASE = '.sequential/profiles'
 
