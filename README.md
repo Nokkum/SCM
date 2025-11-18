@@ -7,7 +7,7 @@
   A modular, secure credential management system designed for developers. Stores tokens, API keys, and credentials encrypted, supports multiple storage backends, and includes utilities for migration, scanning, and RBAC enforcement.
 </p>
 
-# Features
+## Features
 
 - **Master-Password Encryption**: All credentials are encrypted with a master password using modern cryptography (Fernet + PBKDF2).
 - **Flexible Storage**: Store credentials in local JSON + filesystem encrypted blobs or SQLite database. Optional Postgres support.
@@ -21,7 +21,7 @@
 - **Secret Scanner**: Scan text or files for sensitive information like API keys and tokens.
 - **Extensible Templates**: Provider templates for standardized credential entry.
 
-# Directory Structure
+## Directory Structure
 ```
 project_root/
 │
@@ -52,7 +52,7 @@ project_root/
    └─ secure_memory.py   # Secure memory handling
 ```
 
-# Installation
+## Installation
 ```bash
 git clone <repo-url>
 cd sequential-credential-manager
@@ -62,7 +62,7 @@ source venv/bin/activate  # Linux/macOS
 pip install -r requirements.txt
 ```
 
-# Environment Variables
+## Environment Variables
 - **MASTER_PASSWORD**: Optional environment variable for the master password
 ```bash
 # Linux/macOS
@@ -72,7 +72,7 @@ export MASTER_PASSWORD="your-strong-password"
 $env:MASTER_PASSWORD="your-strong-password"
 ```
 
-# Quick Start
+## Quick Start
 ```bash
 python main.py
 ```
@@ -81,13 +81,13 @@ python main.py
 - Choose whether to store encrypted blobs in the database or filesystem.
 - Use **Migrate** → **Filesystem** → **DB** to move legacy credentials into DB.
 
-# CLI Utilities
+## CLI Utilities
 - Migration Helper (file system → DB):
 ```bash
 python -m core.migration --migrate
 ```
 
-# Usage Examples
+## Usage Examples
 - **Python imports via package interface**:
 ```python
 from core import Database, EncryptionManager, ConfigManager, migrate_filesystem_to_db
@@ -103,7 +103,7 @@ from core.secure_memory import secure_copy
 secure_copy("my-secret-token", timeout=10)
 ```
 
-# Dependencies
+## Dependencies
 - `cryptography` – encryption
 - `psycopg2-binary` – optional Postgres support
 - `tkinter` – GUI
@@ -112,7 +112,7 @@ secure_copy("my-secret-token", timeout=10)
 - `jwt (PyJWT)` – JWT generation
 - `PIL / pystray` – optional tray icon support
 
-# Security Considerations
+## Security Considerations
 - Always use a strong master password.
 - Clipboard auto-wipe reduces exposure but cannot guarantee OS-level protection.
 - Role-based access is scaffold only; integrate with an authentication backend for multi-user setups.
