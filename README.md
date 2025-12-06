@@ -1,6 +1,6 @@
 <h1 align="center">Sequential's Credential Manager</h1>
 <p align="center">
-<img src="https://img.shields.io/badge/version-1.2-Blue" alt="Version 1.2">
+<img src="https://img.shields.io/badge/version-1.5-Blue" alt="Version 1.5">
 <img src="https://img.shields.io/badge/Apache-2.0-Yellow" alt="Apache 2.0">
 </p>
 <p align="center">
@@ -22,7 +22,6 @@
 - `validators.py` - Falls back to Python requests if Rust unavailable
 
 ## Features
-
 - **Master-Password Encryption**: All credentials are encrypted with a master password using modern cryptography (Fernet + PBKDF2).
 - **Flexible Storage**: Store credentials in local JSON + filesystem encrypted blobs or SQLite database. Optional Postgres support.
 - **Migration Utility**: Migrate existing filesystem-stored credentials into database blobs.
@@ -76,8 +75,8 @@ project_root/
 
 ## Installation
 ```bash
-git clone <repo-url>
-cd sequential-credential-manager
+git clone https://github.com/Nokkum/SCM.git
+cd SCM
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 # or on Windows: venv\Scripts\activate
@@ -162,7 +161,7 @@ The wheel is automatically extracted to site-packages. Build takes ~6 minutes du
 - `PIL / pystray` – optional tray icon support
 
 ## Versions
-> **v1.5** – 2025-12-2
+> **v1.5** – 2025-12-1
   - ### Rust Core Modules
     - **secure_memory** - Memory protection with automatic zeroization and mlock support
     - **scanner** - Fast secret scanning with regex patterns (Google API, OpenAI, GitHub, Discord tokens)
