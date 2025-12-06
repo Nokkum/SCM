@@ -8,26 +8,18 @@
 </p>
 
 ## Changes
-
-### Version 1.2
-- Credential list view with a proper table showing provider, name, favorite status, and expiry
-- Real-time search/filter - just start typing to find credentials
-- Copy button with secure auto-wipe (clipboard clears after 30 seconds)
-- Keyboard shortcuts: Ctrl+S to save, Ctrl+C to copy, Ctrl+F to focus search, Escape to clear selection
-- Auto-lock timeout with configurable options (1, 5, 15, or 30 minutes of inactivity)
-- Password strength indicator when entering or rotating the master password
-- Lock screen requires master password to unlock
-- Custom categories - create your own beyond tokens and APIs
-- Favorites toggle - mark important credentials for quick access (appear at top)
-- Notes field - add descriptions, reminders, or any information about credentials
-- Expiry dates - set when credentials expire
-- Expiry reminders - warning popup on startup for credentials expiring within 7 days
-- CSV import - import credentials from spreadsheets
-- Expiry status shown in the list (shows "EXPIRED", "3d left", etc.)
-- Dark mode toggle - switch between light and dark themes (flatly, darkly, superhero, solar, cyborg, vapor)
-- Theme preference persists between sessions
-- System tray support (when pystray is available) - minimize to tray with quick access menu
-
+> ### Version 1.5
+- **secure_memory** - Memory protection with automatic zeroization and mlock support
+- **scanner** - Fast secret scanning with regex patterns (Google API, OpenAI, GitHub, Discord tokens)
+- **security** - Encryption manager with Argon2id key derivation (upgraded from PBKDF2) and AES-256-GCM encryption
+- **crypto_advanced** - HKDF key derivation and AES key wrapping for per-provider keys
+- **database** - SQLite database operations with connection pooling
+- **validators** - API token validation for Discord, GitHub, OpenAI, Slack, and Stripe
+- `secure_memory.py` - Falls back to Python ctypes if Rust unavailable
+- `scanner.py` - Falls back to Python regex if Rust unavailable
+- `security.py` - Falls back to Python cryptography library if Rust unavailable
+- `crypto_advanced.py` - Falls back to Python HKDF if Rust unavailable
+- `validators.py` - Falls back to Python requests if Rust unavailable
 
 ## Features
 
@@ -133,6 +125,33 @@ from core.secure_memory import secure_copy
 secure_copy("my-secret-token", timeout=10)
 ```
 
+## Build System
+
+### Building Rust Extension
+```bash
+cd rust_core
+maturin build --release
+```
+
+### Installing
+The wheel is automatically extracted to site-packages. Build takes ~6 minutes due to bundled SQLite compilation.
+
+## Security Features
+### Rust Advantages
+- **Memory Safety**: True memory protection with mlock() and automatic zeroization on drop
+- **Argon2id**: More secure key derivation than PBKDF2 (65536KB memory, 3 iterations)
+- **AES-256-GCM**: Authenticated encryption with 12-byte random nonces
+- **No Silent Fallback**: Encryption errors propagate to caller instead of falling back to incompatible format
+
+### Encryption Format
+- New installations use Rust AES-256-GCM exclusively
+- Existing Fernet-encrypted data is handled by the password rotation function
+
+## Security Considerations
+- Always use a strong master password.
+- Clipboard auto-wipe reduces exposure but cannot guarantee OS-level protection.
+- Role-based access is scaffold only; integrate with an authentication backend for multi-user setups.
+
 ## Dependencies
 - `cryptography` – encryption
 - `psycopg2-binary` – optional Postgres support
@@ -142,12 +161,21 @@ secure_copy("my-secret-token", timeout=10)
 - `jwt (PyJWT)` – JWT generation
 - `PIL / pystray` – optional tray icon support
 
-## Security Considerations
-- Always use a strong master password.
-- Clipboard auto-wipe reduces exposure but cannot guarantee OS-level protection.
-- Role-based access is scaffold only; integrate with an authentication backend for multi-user setups.
-
 ## Versions
+> **v1.5** – 2025-12-2
+  - ### Rust Core Modules
+    - **secure_memory** - Memory protection with automatic zeroization and mlock support
+    - **scanner** - Fast secret scanning with regex patterns (Google API, OpenAI, GitHub, Discord tokens)
+    - **security** - Encryption manager with Argon2id key derivation (upgraded from PBKDF2) and AES-256-GCM encryption
+    - **crypto_advanced** - HKDF key derivation and AES key wrapping for per-provider keys
+    - **database** - SQLite database operations with connection pooling
+    - **validators** - API token validation for Discord, GitHub, OpenAI, Slack, and Stripe
+  - ### Python Wrapper Modules
+    - `secure_memory.py` - Falls back to Python ctypes if Rust unavailable
+    - `scanner.py` - Falls back to Python regex if Rust unavailable
+    - `security.py` - Falls back to Python cryptography library if Rust unavailable
+    - `crypto_advanced.py` - Falls back to Python HKDF if Rust unavailable
+    - `validators.py` - Falls back to Python requests if Rust unavailable
 - **v1.2** – 2025-12-1
   - New table-based credential list with search/filter and favorites
   - Clipboard copy with 30s secure auto-wipe
@@ -158,12 +186,11 @@ secure_copy("my-secret-token", timeout=10)
   - Dark mode + multiple themes with saved preferences
   - Keyboard shortcuts (Ctrl+S/C/F, Escape)
   - System tray support with quick-access menu
-
-- **v1.1** – 2025-11-18
+> **v1.1** – 2025-11-18
   - Added audit, backup, and CLI modules
   - Clipboard auto-wipe functionality
   - Profile switching and RBAC enhancements
-- **v1.0** – 2025-11-17
+> **v1.0** – 2025-11-17
   - Initial release with Tkinter GUI and encrypted credential storage
   - Added token validation and scanning
   - GUI refactor, database migration helpers
