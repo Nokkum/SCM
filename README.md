@@ -71,19 +71,19 @@ project_root/
 │  ├─ scanner.py         # Secret scanning
 │  ├─ crypto_advanced.py # Advanced cryptography utilities
 │  └─ secure_memory.py   # Secure memory handling
-|
-└── rust_core/
-     ├── src/
-     │   ├── lib.rs
-     │   ├── security.rs
-     │   ├── database.rs
-     │   ├── secure_memory.rs
-     │   ├── crypto_advanced.rs
-     │   ├── scanners.rs
-     │   └── validators.rs
-     ├── Cargo.lock
-     ├── Cargo.toml
-     └── pyproject.toml
+│
+└── rust_core/           # High-performance Rust core
+   ├── src/
+   │   ├── lib.rs
+   │   ├── security.rs
+   │   ├── database.rs
+   │   ├── secure_memory.rs
+   │   ├── crypto_advanced.rs
+   │   ├── scanners.rs
+   │   └── validators.rs
+   ├── Cargo.lock
+   ├── Cargo.toml
+   └── pyproject.toml
 ```
 
 ## Installation
