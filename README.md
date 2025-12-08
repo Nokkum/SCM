@@ -57,6 +57,7 @@ project_root/
 │  ├─ __init__.py        
 │  ├─ security.py              # EncryptionManager
 │  ├─ audit.py                 # Auto logging
+│  ├─ clipboard.py             # Auto-wipes clipboard hisory
 │  ├─ backup.py                # Backup + restoration
 │  ├─ cli.py                   # CLI Integration
 │  ├─ database.py              # JSON + SQLite + optional Postgres storage
